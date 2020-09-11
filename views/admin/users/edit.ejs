@@ -1,0 +1,22 @@
+<%- include("../../partials/header.ejs") %>
+<%- include("../../partials/navbar.ejs") %>
+
+<div class="container">
+    <hr>
+    <div class="card mt-5"> <!--mt == margin top e vai ate o numero 5 | mb= margin button, ml e mr do BOOTSTRAP-->
+        <div class="card-header">
+            <h2>Edite Usuario</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/admin/users/update">
+                <input class="form-control" type="text" name="nome" placeholder="Digite seu nome aqui" value="<%= user.nome %>"><br>
+                <input class="form-control" name="email" type="email" placeholder="email@exemplo.com" value="<%= user.email %>"><br>
+                <input class="form-control" type="password" name="password" placeholder="********" value="<%= user.password %>"><br>
+                <input type="hidden" name="id" value="<%= user.id %>">
+                <button type="submit" class="btn btn-success btn-block">Atualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include("../../partials/footer.ejs") %>

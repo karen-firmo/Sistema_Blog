@@ -1,0 +1,51 @@
+<%- include("../../partials/header.ejs") %>
+<%- include("../../partials/navbar.ejs") %>
+
+<div class="container">
+    <hr>
+        <div class="clearfix"> <!--clearflix clear the floats-->
+            <h2 class="float-left">Categorias</h2>
+            <a class="btn btn-success float-right" href="/admin/categories/new">Criar nova Categoria</a>
+        </div>
+    <hr>
+    <table class="table table-bordered">
+        <thead> <!--cabecalho-->
+            <tr> <!--uma linha da table-->
+                <th>ID</th><!--as colunas da linha--> 
+                <th>Títulos</th>
+                <th>Slug</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+                <% categories.forEach(category => { %>
+                    <tr>
+                        <th><%=category.id%></th><!--as colunas da linha--> 
+                        <th><%= category.title %></th>
+                        <th><%= category.slug %></th>
+                        <th>
+                            <form method="POST" action="" style="display: inline;">
+                                <input type="hidden" name="id" value=" <%= category.id %> "> <!--tipo hidden  == escondido-->
+                                <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-warning">Editar</a>
+                            </form>
+                            <form method="POST" action="/admin/categories/delete" style="display: inline;" onsubmit="confirmarDelete(event, this)"> 
+                                <input type="hidden" name="id" value=" <%= category.id %> ">
+                                <button class="btn btn-danger">Deletar</button>
+                            </form>
+                        </th>
+                    </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include("../../partials/footer.ejs") %>
+<script> //aula 84 (confirmacao de delete)
+    function confirmarDelete(event,form){  //impede que o form seja submetido pelo onsubmit do form (antes ele precisa confirmar)
+        event.preventDefault();
+        var decision =  confirm("Apagar essa categoria ?")
+        if(decision){ //se verdadeiro
+            form.submit();
+        }
+    }
+</script>

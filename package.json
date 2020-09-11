@@ -1,0 +1,20 @@
+{
+  "name": "sistema_blog",
+  "version": "1.0.0",
+  "description": "<img src=\"https://pplware.sapo.pt/wp-content/uploads/2016/05/nodejs_04_thumb.jpg\" />",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express-session": "^1.17.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.5",
+    "slugify": "^1.4.5"
+  }
+}

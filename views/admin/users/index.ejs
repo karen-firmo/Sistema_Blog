@@ -1,0 +1,54 @@
+<%- include("../../partials/header.ejs") %>
+<%- include("../../partials/navbar.ejs") %>
+
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-header clearfix">
+            <h2 class="float-left">Usuarios</h2>
+            <a href="/admin/users/create" class="btn btn-success float-right">Novo Admin</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user => { %>
+                        <tr>
+                            <th><%= user.id%></th>
+                            <th><%= user.nome%></th>
+                            <th><%= user.email%></th>
+                            <th>
+                                <form method="POST" action="" style="display: inline;">
+                                    <input type="hidden" name="id"  value="<%= user.id %>">
+                                    <a href="/admin/users/edit/<%=user.id%>" class="btn btn-warning">Editar</a>
+                                </form>
+                                <form method="POST" action="/admin/users/delete" style="display: inline;"  onsubmit="confirmarDelete(event, this)">
+                                    <input type="hidden" name="id" value="<%=user.id%>">
+                                    <button class="btn btn-danger">Deletar</button>
+                                </form>
+                            </th>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<%- include("../../partials/footer.ejs") %>
+<script> //aula 84 (confirmacao de delete)
+    function confirmarDelete(event,form){  //impede que o form seja submetido pelo onsubmit do form (antes ele precisa confirmar)
+        event.preventDefault();
+        var decision =  confirm("Apagar esse admin ?")
+        if(decision){ //se verdadeiro
+            form.submit();
+        }
+    }
+</script>
